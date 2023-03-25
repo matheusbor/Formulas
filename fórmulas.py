@@ -1,4 +1,3 @@
-
 c = 2.99792458e8
 h = 6.62607015e-34
 v = None 
@@ -12,7 +11,7 @@ Qual operação deseja fazer?
 [2] Calcular a energia de um fóton
 '''))
 
-if operação == 1:
+def calcular_comprimento_onda():
     onda = input("É radiação eletromagnética? (s para sim e n para não): ")
     if onda == "s":
         print("\nEscreva com a precisão que quiser:")
@@ -25,9 +24,18 @@ if operação == 1:
         f = float(input("Qual a frequência da onda? "))
         comprimento_onda = v / f
         print("O comprimento desta onda é: ",comprimento_onda)
-elif operação == 2:
+
+def calcular_energia_foton():
     v = float(input("Qual a frequência da onda? "))
     E = h * v
     print("A energia deste fóton é: ",E)
 
+def escolher_operacao(operação):
+    switcher = {
+        1: calcular_comprimento_onda,
+        2: calcular_energia_foton
+    }
+    func = switcher.get(operação, lambda: print("Opção inválida"))
+    func()
 
+escolher_operacao(operação)
